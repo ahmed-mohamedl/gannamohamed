@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>المفاجأة الكبرى 🎉</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      padding: 15px 10px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+
+    </body></html>,
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      padding: 15px 10px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* تأثير تساقط القلوب خلف الشاشة */
+    .bg-heart {
+      position: fixed;
+      top: -10%;
+      font-size: 18px;
+      color: rgba(255, 65, 108, 0.35);
+      animation: fall 6s linear infinite;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(115vh) rotate(360deg);
+      }
+    }
+
+    /* قلوب متطايرة عند اللمس */
+    .touch-heart {
+      position: fixed;
+      font-size: 20px;
+      pointer-events: none;
+      animation: floatHeart 1.2s ease-out forwards;
+      z-index: 9999;
+    }
+
+    @keyframes floatHeart {
+      0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+      }
+
+      100% {
+        opacity: 0;
+        transform: translate(0, -60px) scale(1.5);
+      }
+    }
+
+    .mobile-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 30px;
+      padding: 25px 18px;
+      width: 100%;
+      max-width: 390px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      animation: popIn 0.5s ease-out;
+      position: relative;
+      z-index: 10;
+    }
+
+    @keyframes popIn {
+      from {
+        transform: scale(0.85);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* مدخل كلمة السر */
+    input {
+      width: 100%;
+      padding: 16px;
+      margin: 20px 0;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      text-align: center;
+      font-size: 18px;
+      outline: none;
+      background: rgba(255, 255, 255, 0.95);
+      color: #2c5364;
+      font-weight: bold;
+    }
+
+    .btn-mobile {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(45deg, #ff416c, #ff4b2b);
+      border: none;
+      color: white;
+      border-radius: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(255, 65, 108, 0.4);
+      transition: 0.2s;
+    }
+
+    .btn-mobile:active {
+      transform: scale(0.98);
+    }
+
+    /* مشغل الصوت الثابت بالزاوية */
+    .audio-float {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 20;
+      backdrop-filter: blur(5px);
+    }
+
+    /* عداد العمر */
+    .age-counter-container {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 15px 10px;
+      margin: 15px 0;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .age-grid {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 10px;
+    }
+
+    .age-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .age-number {
+      font-size: 18px;
+      font-weight: bold;
+      color: #ff416c;
+      background: rgba(0, 0, 0, 0.2);
+      padding: 6px 10px;
+      border-radius: 12px;
+      min-width: 45px;
+    }
+
+    .age-label {
+      font-size: 11px;
+      opacity: 0.8;
+      margin-top: 4px;
+    }
+
+    /* لعبة الشمعة والتورتة */
+    .cake-box {
+      margin: 20px 0;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 15px;
+      border-radius: 20px;
+    }
+
+    .candle {
+      font-size: 40px;
+      cursor: pointer;
+      display: inline-block;
+      transition: transform 0.2s;
+      user-select: none;
+    }
+
+    .candle.flame {
+      animation: flicker 0.6s infinite alternate;
+    }
+
+    @keyframes flicker {
+      0% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 10px #fbc531);
+      }
+
+      100% {
+        transform: scale(1.15);
+        filter: drop-shadow(0 0 20px #e1b12c);
+      }
+    }
+
+    /* معرض الصور المطور بالسلايد والبروجريس بار */
+    .slider-wrapper {
+      position: relative;
+      width: 100%;
+      height: 250px;
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 15px 0 8px 0;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .slider-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+      user-select: none;
+    }
+
+    .slider-img.active {
+      display: block;
+      animation: fadeIn 0.4s;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: #ff416c;
+      transition: width 0.1s linear;
+    }
+
+    .dots-container {
+      display: flex;
+      justifyContent: center;
+      gap: 8px;
+      margin-bottom: 15px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+
+    .dot.active {
+      background: #ff416c;
+      width: 22px;
+      border-radius: 10px;
+    }
+
+    /* كروت الأسباب التفاعلية (Click to Reveal) */
+    .reasons-title {
+      font-size: 13px;
+      color: #38ef7d;
+      margin: 15px 0 10px 0;
+      text-align: right;
+      font-weight: bold;
+    }
+
+    .reasons-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .reason-card {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px dashed rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      padding: 15px 10px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: 0.3s;
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .reason-card.revealed {
+      background: rgba(255, 65, 108, 0.2);
+      border: 1px solid #ff416c;
+      color: #fff;
+    }
+
+    /* شريط محطات الذكريات (Timeline) */
+    .timeline-container {
+      margin: 20px 0;
+      text-align: right;
+    }
+
+    .timeline-title {
+      font-size: 13px;
+      color: #ff416c;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .timeline-scroll {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .timeline-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .timeline-card {
+      min-width: 160px;
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 12px;
+      border-radius: 18px;
+      scroll-snap-align: start;
+      text-align: center;
+    }
+
+    .timeline-year {
+      font-size: 12px;
+      font-weight: bold;
+      color: #fbc531;
+      background: rgba(251, 197, 49, 0.15);
+      padding: 3px 8px;
+      border-radius: 10px;
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+
+    .timeline-text {
+      font-size: 12px;
+      line-height: 1.4;
+      color: #eee;
+    }
+
+    /* شات واتساب الذكريات */
+    .chat-container {
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 20px;
+      padding: 15px;
+      margin: 20px 0;
+      text-align: right;
+    }
+
+    .chat-bubble {
+      background: #056162;
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 15px 15px 0 15px;
+      margin-bottom: 10px;
+      font-size: 14px;
+      line-height: 1.4;
+      max-width: 85%;
+      margin-right: auto;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    /* نافذة الرسالة السرية (Modal / Pop-up) */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background: #1e272e;
+      border-radius: 25px;
+      padding: 25px 20px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+      animation: slideDown 0.4s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  </style>
+  </head>
+
+  <body>
+
+    <!-- قلوب تسقط في الخلفية -->
+    <div id="heartsBgContainer"></div>
+
+    <!-- 1. شاشة الباسورد -->
+    <div class="mobile-card" id="loginScreen">
+      <div style="font-size: 50px; margin-bottom: 10px;">🔐</div>
+      <h2>افتح المفاجأة</h2>
+      <p style="font-size: 14px; opacity: 0.8; margin-top: 5px;">اكتب كلمة السر الخاصة بنا</p>
+
+      <input type="password" id="passInput" placeholder="•••" inputmode="numeric">
+      <button class="btn-mobile" onclick="checkPassword()">افتح 🎁</button>
+      <p id="errorMsg" style="color: #ff6b6b; margin-top: 12px; font-size: 14px; display: none;">كلمة السر مش صح، حاول
+        تاني! 😜</p>
+    </div>
+
+    <!-- 2. صفحة الاحتفال الرئيسية -->
+    <div class="mobile-card hidden" id="celebrationScreen">
+
+      <!-- زر التحكم بالصوت Floating -->
+      <div class="audio-float" onclick="toggleMusic()">
+        <audio id="bgMusic" src="media/song.mp3" loop></audio>
+        <i class="fa-solid fa-play" id="playIcon" style="font-size: 16px; color: #ff416c;"></i>
+      </div>
+
+      <h1 style="font-size: 22px; margin-top: 10px;">🎂 كل سنة وانتِ طيبة! 🎂</h1>
+
+      <!-- عداد العمر الحي بناءً على تاريخ 23.10.2006 -->
+      <div class="age-counter-container">
+        <p style="font-size: 13px; opacity: 0.9;">رحلتك الجميلة في الحياه لغاية دلوقتي: ⏳</p>
+        <div class="age-grid">
+          <div class="age-item">
+            <span class="age-number" id="years">0</span>
+            <span class="age-label">سنة</span>
+          </div>
+          <div class="age-item">
+            <span class="age-number" id="days">0</span>
+            <span class="age-label">يوم</span>
+          </div>
+          <div class="age-item">
+            <span class="age-number" id="hours">0</span>
+            <span class="age-label">ساعة</span>
+          </div>
+          <div class="age-item">
+            <span class="age-number" id="minutes">0</span>
+            <span class="age-label">دقيقة</span>
+          </div>
+          <div class="age-item">
+            <span class="age-number" id="seconds">0</span>
+            <span class="age-label">ثانية</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- لعبة طفي الشمعة -->
+      <div class="cake-box">
+        <p style="font-size: 13px; opacity: 0.9; margin-bottom: 8px;">اتمنى أمنية والمِس الشمعة عشان تطفيها! 🕯️</p>
+        <div class="candle flame" id="candle" onclick="blowCandle()">🕯️</div>
+        <p id="wishText" style="font-size: 12px; color: #feca57; margin-top: 5px; display: none;">يا رب كل أحلامك تتحقق
+          السنة دي! ✨🎉</p>
+      </div>
+
+      <!-- معرض الصور المطور مع شريط التردد التلقائي -->
+      <!-- معرض الصور المخصص للموبايل (5 صور) -->
+      <div class="slider-wrapper" id="touchArea">
+        <img src="media/1.jpg" class="slider-img active" alt="صورة 1"
+          style="width: 100%; height: 100%; object-fit: contain;">
+        <img src="media/2.jpg" class="slider-img" alt="صورة 2" style="width: 100%; height: 100%; object-fit: contain;">
+        <img src="media/3.jpg" class="slider-img" alt="صورة 3" style="width: 100%; height 100%; object-fit: contain;">
+        <img src="media/4.jpg" class="slider-img" alt="صورة 4" style="width: 100%; height: 100%; object-fit: contain;">
+        <img src="media/5.jpg" class="slider-img" alt="صورة 5" style="width: 100%; height: 100%; object-fit: contain;">
+      </div>
+
+      <!-- شريط تقدم السلايدر -->
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+
+      <!-- النقط الخمسة للتنقل -->
+      <div class="dots-container">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+
+      <!-- لعبة كروت الأسباب/الأمنيات التفاعلية -->
+      <div class="reasons-title"><i class="fa-solid fa-sparkles"></i> اضغطي على الكروت واكتشفي: 🎁</div>
+      <div class="reasons-grid">
+        <div class="reason-card" onclick="revealCard(this, 'ضحكتك بتحلي يومي يا جنتي✨')">🎁 اضغطي هنا</div>
+        <div class="reason-card" onclick="revealCard(this, 'ربنا يديم وجودك يا موزتي❤️')">🎁 اضغطي هنا</div>
+        <div class="reason-card" onclick="revealCard(this,'اول سنة لينا سوا ومش اخر سنة ان شاء لله')">🎁 اضغطي هنا</div>
+        <div class="reason-card" onclick="revealCard(this,'احن واطيب حد في الوجود')">🎁 اضغطي هنا</div>
+      </div>
+
+      <!-- محطات الذكريات التفاعلية (Timeline) -->
+      <div class="timeline-container">
+        <div class="timeline-title"><i class="fa-solid fa-star"></i> محطات في حياتنا 👈</div>
+        <div class="timeline-scroll">
+          <div class="timeline-card">
+            <span class="timeline-year">9/7/2026❤️</span>
+            <div class="timeline-text">أول يوم اتكلمنا فيه وبدأت أجمل الأيام.</div>
+          </div>
+          <div class="timeline-card">
+            <span class="timeline-year">أحلى مواقف ✨</span>
+            <div class="timeline-text">ضحكنا وتشاركنا تفاصيل مكانتش تنتهي.</div>
+          </div>
+          <div class="timeline-card">
+            <span class="timeline-year">العام الحالي 🎂</span>
+            <div class="timeline-text">بتمني ليكي سنة سعيده وراحه بال يا نور عيوني.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- شات الذكريات -->
+      <div class="chat-container">
+        <div style="font-size: 12px; color: #25d366; margin-bottom: 10px;"><i class="fa-solid fa-envelope"></i> رسائل
+          خاصة:</div>
+        <div class="chat-bubble">فاكرة أول مرة اتكلمنا فيها؟ كان يوم غير عادي ❤️</div>
+        <div class="chat-bubble">شكراً إنك دايماً جمبي وموجودة في كل أوقاتي.</div>
+        <div class="chat-bubble" style="background: #075e54;">يا رب السنة دي تكون بداية لكل حاجة حلوة بتتمنيها! 🌟</div>
+      </div>
+
+      <!-- زر فتح الرسالة السرية -->
+      <button class="btn-mobile" style="background: linear-gradient(45deg, #11998e, #38ef7d); margin-bottom: 10px;"
+        onclick="openModal()">
+        اقرأي الرسالة السرية ✉️
+      </button>
+
+    </div>
+
+    <!-- النافذة المنبثقة للرسالة السرية -->
+    <div class="modal-overlay hidden" id="secretModal">
+      <div class="modal-content">
+        <h3 style="color: #ff416c; margin-bottom: 10px;">💌 رسالة خاصة جداً</h3>
+        <p style="font-size: 14px; line-height: 1.6; color: #ddd; text-align: right; margin-bottom: 20px;">
+          كتبتلك الرسالة دي مخصوص عشان أقولك إن وجودك بيفرق معايا جداً، وكل سنة وانتِ طيبة وبخير وناجحة. ويا رب السنة
+          الجديدة تكون المفضلّة عندك وتحققي فيها كل أهدافك! ❤️✨
+          بحبك وبموت فيكي يا جنتي يا احلي حاجه في دنيتي وربنا يخليكي لي وميحرمنيش منك
+        </p>
+
+        <button class="btn-mobile" style="padding: 10px 20px; font-size: 14px;" onclick="closeModal()">إغلاق ✨</button>
+      </div>
+    </div>
+
+    <script>
+      // إنشاء القلوب المتساقطة بالخلفية
+      function createBgHearts() {
+        const container = document.getElementById('heartsBgContainer');
+        for (let i = 0; i < 15; i++) {
+          let heart = document.createElement('div');
+          heart.className = 'bg-heart';
+          heart.innerHTML = ['❤️', '✨', '💖'][Math.floor(Math.random() * 3)];
+          heart.style.left = Math.random() * 100 + 'vw';
+          heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+          heart.style.animationDelay = (Math.random() * 5) + 's';
+          container.appendChild(heart);
+        }
+      }
+      createBgHearts();
+
+      // 1. التحقق من الباسورد
+      function checkPassword() {
+        const secret = "2310"; // كلمة السر
+        const userInput = document.getElementById("passInput").value;
+
+        if (userInput === secret) {
+          document.getElementById("loginScreen").classList.add("hidden");
+          document.getElementById("celebrationScreen").classList.remove("hidden");
+
+          // تشغيل الموسيقى تلقائياً
+          const music = document.getElementById("bgMusic");
+          music.play();
+          document.getElementById("playIcon").className = "fa-solid fa-pause";
+
+          // الـ Confetti
+          confetti({ particleCount: 90, spread: 70, origin: { y: 0.6 } });
+
+          // تشغيل العداد الحي والسلايدر
+          startAgeCounter();
+          startAutoSlider();
+        } else {
+          document.getElementById("errorMsg").style.display = "block";
+        }
+      }
+
+      // 2. حساب عداد العمر الدقيق لـ 23.10.2006
+      function startAgeCounter() {
+        const birthDate = new Date("2006-10-23T00:00:00");
+
+        function updateCounter() {
+          const now = new Date();
+          const diff = now - birthDate;
+
+          const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+          const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+          document.getElementById("years").innerText = years;
+          document.getElementById("days").innerText = days;
+          document.getElementById("hours").innerText = hours;
+          document.getElementById("minutes").innerText = minutes;
+          document.getElementById("seconds").innerText = seconds;
+        }
+
+        updateCounter();
+        setInterval(updateCounter, 1000);
+      }
+
+      // 3. تأثير ظهور قلوب عند لمس الشاشة
+      document.addEventListener('touchstart', function (e) {
+        let touch = e.touches[0];
+        let heart = document.createElement('div');
+        heart.className = 'touch-heart';
+        heart.innerHTML = '❤️';
+        heart.style.left = touch.clientX + 'px';
+        heart.style.top = touch.clientY + 'px';
+        document.body.appendChild(heart);
+
+        setTimeout(() => { heart.remove(); }, 1200);
+      });
+
+      // 4. تشغيل / إيقاف الصوت
+      function toggleMusic() {
+        const music = document.getElementById("bgMusic");
+        const icon = document.getElementById("playIcon");
+        if (music.paused) {
+          music.play();
+          icon.className = "fa-solid fa-pause";
+        } else {
+          music.pause();
+          icon.className = "fa-solid fa-play";
+        }
+      }
+
+      // 5. لعبة طفي الشمعة
+      let candleBlown = false;
+      function blowCandle() {
+        if (!candleBlown) {
+          const candle = document.getElementById("candle");
+          candle.classList.remove("flame");
+          candle.innerHTML = "💨🕯️";
+          document.getElementById("wishText").style.display = "block";
+          confetti({ particleCount: 50, spread: 100, origin: { y: 0.4 } });
+          candleBlown = true;
+        }
+      }
+
+      // 6. لعبة الكروت التفاعلية
+      function revealCard(element, text) {
+        element.innerHTML = text;
+        element.classList.add('revealed');
+        confetti({ particleCount: 15, spread: 40, origin: { y: 0.7 } });
+      }
+
+      // 7. النافذة المنبثقة
+      function openModal() {
+        document.getElementById("secretModal").classList.remove("hidden");
+        confetti({ particleCount: 30, spread: 50, origin: { y: 0.5 } });
+      }
+      function closeModal() {
+        document.getElementById("secretModal").classList.add("hidden");
+      }
+
+      // 8. السلايدر التلقائي وشريط التقدم
+      let currentSlide = 0;
+      const slides = document.querySelectorAll('.slider-img');
+      const dots = document.querySelectorAll('.dot');
+      const progressBar = document.getElementById('progressBar');
+      let slideInterval;
+      let progressInterval;
+      let progress = 0;
+
+      function changeSlide(direction) {
+        slides[currentSlide].classList.remove('active');
+        dots[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + direction + slides.length) % slides.length;
+        slides[currentSlide].classList.add('active');
+        dots[currentSlide].classList.add('active');
+        resetProgress();
+      }
+
+      function resetProgress() {
+        progress = 0;
+        progressBar.style.width = '0%';
+      }
+
+      function startAutoSlider() {
+        slideInterval = setInterval(() => {
+          changeSlide(1);
+        }, 4000);
+
+        progressInterval = setInterval(() => {
+          progress += 2.5; // كل 100 ملي ثانية يزود 2.5% لتصل لـ 100% خلال 4 ثواني
+          if (progress <= 100) {
+            progressBar.style.width = progress + '%';
+          }
+        }, 100);
+      }
+
+      // سحب الصور بالأصابع (Touch Swipe)
+      let touchStartX = 0;
+      let touchEndX = 0;
+      const touchArea = document.getElementById('touchArea');
+
+      touchArea.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; });
+      touchArea.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        if (touchStartX - touchEndX > 35) changeSlide(1);
+        else if (touchEndX - touchStartX > 35) changeSlide(-1);
+      });
+    </script>
+  </body>
+
+</html>
